@@ -143,7 +143,7 @@ class PollController extends Controller
                 if($endDate->subDays(10)->diffInDays() > 5 ){
                     
                     $poll->delete();
-                    //$poll->option_polls()->delete();
+                    $poll->option_polls()->delete();
                 }
             }
             

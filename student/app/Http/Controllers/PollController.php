@@ -144,7 +144,7 @@ class PollController extends Controller
                     
                     $poll->delete();
                     $poll->option_polls()->delete();
-                    //jos jedna izmjena
+                   //testna izmjena
                 }
             }
             

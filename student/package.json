@@ -20,6 +20,9 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "font-awesome": "^4.7.0"
+        "@fullcalendar/core": "^5.1.0",
+        "@fullcalendar/daygrid": "^5.1.0",
+        "font-awesome": "^4.7.0",
+        "fullcalendar": "^5.1.0"
     }
 }

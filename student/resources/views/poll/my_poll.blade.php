@@ -39,7 +39,7 @@
 									</a>
 									@if($poll->isActive == 1)
 										<a href="/poll/{{ $poll->id }}/status" class="btn btn-app">
-											<i class="fas fa-window-close" style="color:red"></i>Close
+											<i class="fas fa-lock" style="color:rgb(133, 48, 48)"></i>Close
 										</a>
 									@endif
                   <a href="/poll/{{ $poll->id }}/result" class="btn btn-app">

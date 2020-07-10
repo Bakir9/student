@@ -40,8 +40,24 @@
     
     <!-- Sweet Alert ----->
     @include('sweetalert::alert')
+
+    <!--- Full Calendar ---->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@4.4.0/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@4.4.0/main.min.js"></script>
   </body>
 </html>
 <script>
- 
+  var calendar = new Calendar(calendarEl, {
+   headerToolbar: { center: 'dayGridMonth,timeGridWeek' }, // buttons for switching between views
+
+    views: {
+    dayGridMonth: { // name of view
+      titleFormat: { year: 'numeric', month: '2-digit', day: '2-digit' }
+      // other view-specific options here
+    }
+  }
+});
 </script>

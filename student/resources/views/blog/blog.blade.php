@@ -44,10 +44,10 @@
         <div class="card-body">
           <form action="/vote/{{$poll->id}}/poll" method="get">
             @foreach ($options as $option)
-            <div class="custom-control custom-radio">
-              <input type="radio" class="custom-control-input" value="{{$option->id}}" id="option{{$option->id}}" name="option[]">
-              <label class="custom-control-label" for="option{{$option->id}}">{{$option->option}}</label>
-            </div>
+              <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" value="{{$option->id}}" id="option{{$option->id}}" name="option[]">
+                <label class="custom-control-label" for="option{{$option->id}}">{{$option->option}}</label>
+              </div>
             @endforeach
             <div class="card-footer">
               <button type="submit" {{(Auth::check())==null ? 'disabled' : ''}} class="btn btn-primary">Vote</button>
@@ -121,4 +121,4 @@
   </form>
 </div>
 
-@include('layouts.template.footer')   
+@include('layouts.template.footer')

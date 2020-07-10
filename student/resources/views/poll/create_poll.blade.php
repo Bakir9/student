@@ -17,7 +17,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Question ?</label>
-                    <textarea class="form-control @error('question') border border-danger @enderror" placeholder="Question ?" id="question" name="question" rows="3" ></textarea>
+                    <textarea class="form-control @error('question') border border-danger @enderror" placeholder="Question ?" id="question" name="question" rows="3" value="{{ old('question') }}" required></textarea>
                   </div>
                 </div>
               </div>
@@ -56,13 +56,13 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="start_at">Start At</label>
-                    <input class=" datepicker form-control @error('start_at') border border-danger @enderror" type="date" name="start_at"  id="start_at" required>
+                    <input class="datepicker form-control @error('start_at') border border-danger @enderror" type="date" name="start_at"  id="start_at" value="{{ old('start_at')}}">
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-date-input">End At</label>
-                    <input class="form-control @error('end_at') border border-danger @enderror" type="date" name="end_at"  id="end_at" required>
+                    <input class="form-control @error('end_at') border border-danger @enderror" type="date" name="end_at"  id="end_at" value="{{ old('end_at') }}" required>
                   </div>
                 </div>
               </div>
@@ -72,63 +72,10 @@
             </div>
           </form>
         </div>
-      </div><!---End creating user -->
+      </div>
       <div class="col-md-6">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="small-box bg-success">
-                  <div class="inner">
-                    <h5 style="text-align:left">What is the best PHP Framework ?</h5>
-                    <p>180 votes</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More details <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="small-box bg-lightblue">
-                  <div class="inner">
-                    <h5 style="text-align:left">Best PHP Framework ?</h5>
-                    <p>180 votes</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More details <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="small-box bg-orange">
-                  <div class="inner">
-                    <h5 style="text-align:left">Best PHP Framework ?</h5>
-                    <p>180 votes</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More details <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="small-box bg-info">
-                  <div class="inner">
-                    <h5 style="text-align:left">Best PHP Framework ?</h5>
-                    <p>180 votes</p>
-                  </div>
-                  <div class="icon">
-                    <i class="ion ion-bag"></i>
-                  </div>
-                  <a href="#" class="small-box-footer">More details <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div id="calendar">
         </div>
-        <!-- small box -->
       </div>
     </div>
   </div>

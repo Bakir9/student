@@ -88,11 +88,8 @@ class JobController extends Controller
     public function activeJobs()
     {
         $jobs = Job::where('valid_until', '<=', now())->get();
-        $poll = Poll::firstWhere('isActive',1);
-	    
-        $options = $poll->option_polls;
         
-        return view('jobs.jobs',compact('jobs','poll','options'));
+        return view('jobs.jobs',compact('jobs'));
     }
 
     public function jobs()

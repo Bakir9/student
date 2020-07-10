@@ -30,7 +30,9 @@
   <link href="{{ asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700') }}" rel="stylesheet">
   <!--Select2 -->
   <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
-  
+  <!-- Full Calendar -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/main.min.css"/>
+  <!--End full calendar -->
   <!--TINY Editor-->
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -43,6 +45,7 @@
       menubar: false
       });
   </script>
+  
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -182,12 +185,35 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item has-treeview ">
-            <a href="/users" class="nav-link">
-              <i class="fas fa-users"></i>
+            <a href="#" class="nav-link">
+              <i class="fas fa-briefcase"></i>
               <p>
-                Users
+                User Managment
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Roles</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Permissions</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/users" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>
+                    Users
+                  </p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item has-treeview ">
             <a href="/user_profile/{{Auth::user()->id}}/edit" class="nav-link">
@@ -303,7 +329,7 @@
             </ul>
           </li>
           <li class="nav-item has-treeview ">
-            <a href="/poll" class="nav-link">
+            <a href="" class="nav-link">
               <i class="fas fa-poll"></i>
               <p>
                 Poll

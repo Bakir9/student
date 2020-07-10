@@ -77,3 +77,4 @@ class TagController extends Controller
         }
         return redirect('/tag/'.$tag->id);
     }
+}

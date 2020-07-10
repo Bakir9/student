@@ -26,10 +26,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //Every single view
-        //View::share('categorys',Category::all());
+        /*View::share('categorys',Poll::where('isActive',2)
+            ->orWhere(function($query) {
+                $query->whereDate('start_at',Carbon::now());
+        })->first());*/
 
        /* View::composer(['blog.*', 'news.*'], function($view){
-            $view->with('categorys', Category::all()); 
             $view->with('tags', Tag::all());
             $view->with('blogs', Blog::all());
         });*/

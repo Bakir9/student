@@ -6,9 +6,12 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-12">
-        <form action="delete/poll" method="get">
+        <form action="" method="get">
           @csrf
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="delete/poll" style="background: rgb(180, 177, 177); color: black" class="btn btn-app">
+            <i class="fas fa-times" style="color:red"></i> Delete Old Poll
+          </a>
+          <!--<button type="submit" class="btn btn-primary">Delete All</button>-->
         </form>
       </div>
     </div>
@@ -48,7 +51,7 @@
                       <i class="fas fa-times" style="color:red"></i> Delete
 										</a>
 										@if($poll->isActive == 1)
-											<a href="/poll/{{ $poll->id }}/status" class="btn btn-app">
+											<a href="/poll/{{ $poll->id }}/status" class="btn btn-app" onclick="confirmDelete()">
 												<i class="fas fa-lock" style="color:rgb(133, 48, 48)"></i>Close
 											</a>
 										@endif
@@ -80,5 +83,22 @@
   $(function () {
     $("#example1").DataTable();
   });
+
+  function confirmDelete() {
+    swal.fire({
+      title: "Are you sure ?",
+      text: "Once deleted, you will not be able to recover it !",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then( (willDelete) => {
+      if (willDelete) {
+        $("#"+item_id).submit();
+      } else {
+        swal("Cancelled successfully");
+      }
+    });
+  }
 </script>
   

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image as Image;
 use RealRashid\SweetAlert\Facades\Alert;
+use Carbon\Carbon;
 
 use App\Blog;
 use App\Category;
@@ -97,11 +98,21 @@ class BlogController extends Controller
 	  $blog_id = $blog->id;
 	  $comments = Blog::find($blog_id)->comments;
 	  $numberOfComments = count($comments);
+	 
+
+	 	$poll = Poll::where('isActive',2)
+                    ->orWhere(function($query) {
+                        $query->whereDate('start_at',Carbon::now());
+                    })->first(); 
+		$options = $poll->option_polls;
+		$sum  = $poll->option_polls()->sum('vote');
+        if($poll != null) {
+            $poll->isActive = 1;
+            $poll->save();
+        } 
 	  
-	 $poll = Poll::firstWhere('isActive',1);
 	
-	 $options = $poll->option_polls;
-      return view ('blog.blog', compact('blog','comments', 'numberOfComments', 'poll', 'options'));
+      return view ('blog.blog', compact('blog','comments', 'numberOfComments','poll','options','sum'));
  	}
 
     public function delete($id)
@@ -234,9 +245,5 @@ class BlogController extends Controller
 		return view('blog.my-blogs',compact('blogs'));
 	}
 
-	public function test()
-	{
-		dd("ovo je test");
-	}
 }
 

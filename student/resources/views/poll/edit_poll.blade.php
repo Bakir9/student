@@ -12,6 +12,7 @@
           </div>
         <form  method = "post" action = "/poll/{{$poll->id}}/update">
           @csrf
+          @method('PUT')
             <div class="card-body">
               <div class="row">
                 <div class="col-sm-12">
@@ -28,15 +29,15 @@
               </div>
               <div class="options" id="options">
 								@foreach($options as $option)
-              <div class="row">
-                <div class="col-sm-1"></div>
-                <div class="col-sm-11">
-                  <div class="form-group">
-                    <input type="text" class="form-control @error('option') border border-danger @enderror" name="option[]"
-												placeholder="Ex: Options 1"  value="{{$option->option}}" {{($poll->isActive == 1 || $poll->isActive == 0 )? 'disabled'  : ''}} disabled>
+                <div class="row">
+                  <div class="col-sm-1"></div>
+                  <div class="col-sm-11">
+                    <div class="form-group">
+                      <input type="text" class="form-control @error('option') border border-danger @enderror" name="option[]"
+                          placeholder="Ex: Options 1"  value="{{$option->option}}" {{($poll->isActive == 1 || $poll->isActive == 0 ) ? 'disabled'  : ''}} required>
+                    </div>
                   </div>
                 </div>
-							</div>
 							@endforeach
 						</div>
 						@if($poll->isActive == 2)
@@ -57,7 +58,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="example-date-input">End At</label>
-                    <input class="form-control @error('end_at') border border-danger @enderror" type="date" name="end_at"  id="end_at" value="{{$poll->end_at}}" {{$poll->isActive == 1 ? 'disabled'  : ''}} required>
+                    <input class="form-control @error('end_at') border border-danger @enderror" type="date" name="end_at"  id="end_at" value="{{$poll->end_at}}" required>
                   </div>
                 </div>
               </div>
@@ -71,6 +72,7 @@
 			<!--Possible to show current result if poll is active -->
 			<div class="col-md-6">
 				<div class="row">
+          @if($poll->isActive == 1)
 					<div class="col-sm-12">
 						<div class="alert alert-danger alert-dismissible">
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -78,7 +80,16 @@
 							Because, this poll is currently active, you only have optios to edit <strong>END DATE</strong>.
 							Also, you can see current result of your poll !
 						</div>
-					</div>
+          </div>
+          @elseif ($poll->isActive == 0)
+          <div class="col-sm-12">
+						<div class="alert alert-danger alert-dismissible">
+							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+							<h5><i class="icon fas fa-ban"></i> Alert!</h5>
+							Closed poll
+						</div>
+          </div>
+          @endif
 				</div>
 				<!-- Result from current poll -->
 					@include('poll.result')

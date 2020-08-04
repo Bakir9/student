@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 /**Nav bar route */
 Route::get('/', function () {
     return view('index');
@@ -20,7 +10,6 @@ Route::get('/blog/novi', function () {
     return view('blog.blog');
 });
 
-/**end news */
 Route::get('/jobs', function () {
     return view('jobs.jobs');
 });
@@ -91,6 +80,9 @@ Route::get('/status_change/{user}', 'UserController@statusChange');
 /**Password change */
 Route::put('/password_change/{user}', 'UserController@updatePassword');
 
+/** Add Permissions to User */
+Route::get('/status_change/{user}', 'UserController@statusChange');
+
 /**Category */
 Route::get('/category/create', function (){
     return view ('blog.category.create_category');
@@ -147,13 +139,7 @@ Route::get('/myblogs', 'BlogController@myBlogs');
 /**
  * end blog routes
  */
-
- /** Poll routes */
-
- Route::get('/poll', function (){
-    return view ('poll.create_poll');
-});
-
+ 
  /** Comments route */
  Route::get('/comments/{id}','CommentController@create');
 
@@ -175,6 +161,10 @@ Route::post('/search/job', 'JobController@filterJob');
 Route::get('/search/job', 'JobController@index');
 
 /**Poll routes */
+Route::get('/poll', function (){
+    return view ('poll.create_poll');
+});
+
 Route::post('/poll/create', 'PollController@create');
 Route::get('/list_poll', 'PollController@allPoll');
 Route::get('/mypoll', 'PollController@myPoll');
@@ -185,3 +175,22 @@ Route::get('delete/poll', 'PollController@deleteOldPoll');
 Route::get('/poll/{id}/status', 'PollController@closePoll');
 Route::get('/poll/{id}/result', 'PollController@getResult');
 Route::get('/poll/{id}/delete', 'PollController@delete');
+
+/***Roles */
+Route::get('/roles', 'RoleController@index');
+Route::get('delete/{id}/role', 'RoleController@deleteRole');
+Route::get('/roles/{id}', 'RoleController@showPermission');
+Route::get('/roles/create', function (){
+    return view ('roles.create-role');
+});
+
+Route::get('/role/create', 'RoleController@create');
+
+/**
+ * Permission
+ */
+Route::get('/permissions', 'PermissionController@index');
+Route::get('/permission/create', 'PermissionController@create');
+Route::get('/delete/{id}/permission', 'PermissionController@delete');
+Route::get('/edit/{id}', 'PermissionController@edit');
+Route::get('/edit/{id}/permission', 'PermissionController@update');

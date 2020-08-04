@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Poll');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role','users_roles');
+    }
+
+    public function permissions()
+    {
+        return $this->hasMany('App\Permission');
+    }
 }

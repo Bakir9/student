@@ -41,13 +41,38 @@ function addElement()
       newDiv.appendChild(newButton);
   var icon = document.createElement("i");
       icon.setAttribute("class", "fas fa-minus-square");
-      newButton.appendChild(icon);
-      
+      newButton.appendChild(icon);    
 }
 
 function remove(){
   var div = document.getElementById("inputfield");
   div.remove();
 }
+
+/*$('form').submit(function() {
+    var name = $('$name').val();
+    var description = $('description').val();
+    alert("Proslo");
+    $.ajax({
+      url: "/permission/create",
+      data: {
+          name: name, 
+          description: description,
+      },
+      type: "POST",
+      dataType : "json",
+      success: function( json ) {
+          console.log("proslo");
+      },
+      error: function( xhr, status, errorThrown ) {
+          console.log( "Sorry, there was a problem!" );
+      }
+    });
+  json = '';
+  return false;
+});*/
+
+
+
 
 

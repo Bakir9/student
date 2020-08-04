@@ -45,9 +45,7 @@ class CategoryController extends Controller
               'slug' => Str::slug(request('slug'), '-'),
               'default' => 'yes'
           ]); 
-
-          Alert::success('Success!','New Category created');
-
+            toast('New Category created', 'success');
           } else {
             $category = Category::create([
               'name' => request('name'),

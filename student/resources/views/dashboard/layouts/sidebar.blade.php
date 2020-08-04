@@ -30,9 +30,6 @@
   <link href="{{ asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700') }}" rel="stylesheet">
   <!--Select2 -->
   <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
-  <!-- Full Calendar -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@4.4.0/main.min.css"/>
-  <!--End full calendar -->
   <!--TINY Editor-->
   <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -186,7 +183,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
-              <i class="fas fa-briefcase"></i>
+              <i class="fas fa-tasks"></i>
               <p>
                 User Managment
                 <i class="right fas fa-angle-left"></i>
@@ -194,13 +191,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/roles" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Roles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/permissions" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Permissions</p>
                 </a>

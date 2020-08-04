@@ -71,10 +71,10 @@ class UserController extends Controller
                 'type' => request('type')            
                 ]);
                 
-            Alert::success('Success!','Successfully added');
+                toast('User created !', 'success');
             
         } else {
-            Alert::warning('Warning!','Validation failed');
+            toast('Validation failed !', 'error');
         }
         return redirect('/users');
     }
@@ -100,11 +100,11 @@ class UserController extends Controller
 
        if($delete)
        {
-        Alert::success('Success!','Successfully deleted');
+        toast('Successfully deleted !', 'success');
        } 
        else 
        {
-        Alert::error('Warning!','Not deleted');
+        toast('Not deleted!', 'error');
        }
         
         return redirect('/users');
@@ -125,9 +125,9 @@ class UserController extends Controller
         ]));
 
         if($updateUser) {
-            Alert::success('Success!','Data updated');
+            toast('Data updated !', 'success');
         } else {
-            Alert::warning('Warning!','Not updated');
+            toast('Something wrong !', 'error');
         }
 
         return redirect('/user/' .$user->id. '/edit');
@@ -144,12 +144,12 @@ class UserController extends Controller
 
                 if($user_status)
                 {
-                    Alert::success('Success!','Status changed');
+                    toast('Status changed !', 'success');
 
                     return redirect ('/users');
                 }
                 else {
-                    Alert::warning('Warning!','Something wrong');
+                    toast('Something wrong !', 'error');
                 }
         } else if ($user_status->active == '1'){
             $user_status->active = '0';
@@ -157,15 +157,15 @@ class UserController extends Controller
 
                 if($user_status)
                 {
-                    Alert::success('Success!','Status changed');
+                    toast('Status changed !', 'success');
 
                     return redirect ('/users');
                 }
                 else {
-                    Alert::warning('Warning!','Something wrong');
+                    toast('Something wrong !', 'error');
                 }
         } else {
-            Alert::warning('Warning!','Something wrong');
+            toast('Something wrong !', 'error');
         }
         return redirect ('/users');
     }
@@ -197,12 +197,17 @@ class UserController extends Controller
 
         if($password_updated)
         {
-            Alert::success('Success!','Password changed'); 
+           toast('Password updated !', 'success');
             
             return redirect('/users');
         } 
         else {
-            Alert::warning('Error!','Password not changed');
+            toast('Something wrong !', 'error');
         }
+    }
+
+    public function showRole()
+    {
+        
     }
 }

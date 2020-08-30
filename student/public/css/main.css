@@ -720,9 +720,10 @@ span.comments-time {
   font-size: 14px;
 }
 .jobs-enviroment {
- /* background-color:rgb(141, 150, 236);*/
   background-image: url(/images/findJob.svg);
 }
+
+
 
 @keyframes ani {
   0%{opacity: .1;}

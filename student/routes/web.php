@@ -67,7 +67,7 @@ Route::get('/delete/{id}/user', 'UserController@deleteUser');
 Route::get('/users', 'UserController@count_user');
 
 /***Edit users data */
-Route::get('/user/{user}/edit', 'UserController@editUser');
+Route::get('/user/{user_id}/edit', 'UserController@editUser');
 Route::get('/user_profile/{user}/edit', 'UserController@editUser');
 
 /**Update user data */
@@ -179,7 +179,7 @@ Route::get('/poll/{id}/delete', 'PollController@delete');
 /***Roles */
 Route::get('/roles', 'RoleController@index');
 Route::get('delete/{id}/role', 'RoleController@deleteRole');
-Route::get('/roles/{id}', 'RoleController@showPermission');
+Route::get('/roles/{id}', 'RoleController@showRolePermissions');
 Route::get('/roles/create', function (){
     return view ('roles.create-role');
 });
@@ -194,3 +194,5 @@ Route::get('/permission/create', 'PermissionController@create');
 Route::get('/delete/{id}/permission', 'PermissionController@delete');
 Route::get('/edit/{id}', 'PermissionController@edit');
 Route::get('/edit/{id}/permission', 'PermissionController@update');
+/**Permissions for Role */
+Route::get('/permissions/role/{role_id}', 'RoleController@savePermissionsForRole');

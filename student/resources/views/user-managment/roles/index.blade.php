@@ -3,10 +3,10 @@
 <!-- Main content -->
 <section class="content">
 	<div class="container-fluid">
-		<!-- Small boxes (Stat box) -->
+		<!-- Small boxes (Stat box) 
 		<div class="row">
 			<div class="col-lg-3 col-6">
-				<!-- small box -->
+				 //small box
 				<div class="small-box bg-info">
 					<div class="inner">
 						<h3>+</h3>
@@ -20,7 +20,7 @@
 						<i class="fas fa-arrow-circle-right"></i></button>
         </div>
       </div>
-		</div>
+		</div>-->
 		<div class="col-12">
 			<div class="card" style="border-radius:10px; border-top: 5px solid blue;">
 				<div class="card-header">
@@ -48,11 +48,11 @@
 									<a href="delete/{{$role->id}}/role" class="btn btn-app">
 										<i class="fas fa-times" style="color:red"></i> Delete
                   </a>
-									<a href="/roles/{{$role->id}}" class="btn btn-app">
+									<a href="/roles/{{$role->id}}" class="btn btn-app" >
 										<i class="fas fa-low-vision"></i>Permissions
 									</a>
-									<a href="#" class="btn btn-app" >
-										<i class="fas fa-tasks"></i></i> Assigned
+									<a href="#" class="btn btn-app" data-toggle="modal" data-target="#assign-role" >
+										<i class="fas fa-tasks"></i>Assigne
 									</a>
 								</td>
 							</tr>
@@ -71,8 +71,17 @@
 		</div>
 	</div>
 </section>
+
 @include('user-managment.modals.create-role')
+
+@include('user-managment.modals.assign-role')
 
 @include('dashboard.layouts.footer')
 
+<script>
+  $(function () {
+    $("#example1").DataTable();
+  });
+</script>
+  
   

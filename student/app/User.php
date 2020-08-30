@@ -5,11 +5,13 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Permission\HasPermissionsTrait;
 
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasPermissionsTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -60,6 +62,6 @@ class User extends Authenticatable
 
     public function permissions()
     {
-        return $this->hasMany('App\Permission');
+        return $this->belongsToMany('App\Permission','users_permissions','user_id','permission_id');
     }
 }

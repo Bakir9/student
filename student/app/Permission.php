@@ -12,7 +12,13 @@ class Permission extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User','users_permissions');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role','roles_permissions');
+    }
+
     public $timestamps = false;
 }

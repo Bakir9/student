@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\User;
 use App\Blog;
+use App\Permission;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -79,9 +80,9 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    /**Count users, active and disabled */
    public function count_user(Request $request)
     {
+        /**Count users, active and disabled */
         $users = User::all(); 
         $all_users = $users->count();
         $active_user = User::where('active', 1)->count();
@@ -92,10 +93,10 @@ class UserController extends Controller
             'all_users' => $all_users
         ]);
     }
-
-    /**Delete user */
-    public function deleteUser($id){
-       
+    
+    public function deleteUser($id)
+    {
+       /**Delete user */
        $delete = User::where('id', $id)->delete();
 
        if($delete)
@@ -110,14 +111,21 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    public function editUser(User $user){
-        
-        return view ('dashboard.user-dashboard.edit_profile', compact('user'));
+    public function editUser($user_id){
+        $user = User::find($user_id);
+       //dd($user->roles);
+        $user_role = $user->roles;
+        $permissions = Permission::all();
+        $user_permissions = Permission::whereHas('users.roles',function ($query) {
+            $query->where('id',29);
+        })->toSql();
+       dd($user_permissions);
+        return view ('dashboard.user-dashboard.edit_profile', compact('user','user_role','permissions','user_permissions'));
     }
 
-    /**update users data */
     public function update(User $user)
     {
+        /**update users data */
        $updateUser =  $user->update(request()->validate([
             'e_mail' => 'required',
             'phone' => 'required',
@@ -133,9 +141,9 @@ class UserController extends Controller
         return redirect('/user/' .$user->id. '/edit');
     }
 
-    /**Change status from user active <-> disabled */
     public function statusChange($user)
     {
+         /**Change status from user active <-> disabled */
         $user_status = User::find($user);
 
         if($user_status->active == '0'){
@@ -170,9 +178,9 @@ class UserController extends Controller
         return redirect ('/users');
     }
 
-    /**metoda za validaciju requesta koji kupi informacije o useru, ista validacija se koristi na vise mjesta */
     public function validateUser()
     {
+        /**metoda za validaciju requesta koji kupi informacije o useru, ista validacija se koristi na vise mjesta */
         return request()->validate([
 
             'first_name' => 'required',
@@ -204,10 +212,5 @@ class UserController extends Controller
         else {
             toast('Something wrong !', 'error');
         }
-    }
-
-    public function showRole()
-    {
-        
     }
 }

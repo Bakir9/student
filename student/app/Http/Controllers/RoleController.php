@@ -21,13 +21,12 @@ class RoleController extends Controller
     {
         $user_id = $this->getUserId();
         
-        $user = User::find($user_id);
-
         $validateName = request()->validate([
             'name' =>  'required',
-            'description' => 'required'
-            
+            'description' => 'required',
         ]);
+        
+        $user = User::find($user_id);
 
         if($validateName) {
             $role = Role::create([
@@ -59,12 +58,18 @@ class RoleController extends Controller
         return redirect('/roles');
     }
 
-    public function showPermission($id)
+    public function showRolePermissions($id)
     {   
-        $permissions = Permission::all();
+       /* $permissions = Permission::all();
         $role = Role::find($id);
+        $roles_permissions = $role->permissions;*/
+        
+        dd( Permission::whereHas('roles.users',function ($query) {
+            $query->where('id',$this->id);
+        })->get());
+        
 
-        return view('user-managment.roles.add-permission', compact('permissions', 'role'));
+        //return view('user-managment.roles.add-permission', compact('permissions', 'role','roles_permissions'));
     }
 
     public function getUserId()
@@ -76,6 +81,32 @@ class RoleController extends Controller
                         $user_id =  $findUser[$key];
                     }
                 }
-        return $user_id;
+                
+        if($user_id != null) {
+            return $user_id;
+        } else {
+            return null;
+        }
+        
+    }
+
+    public function savePermissionsForRole($role_id)
+    {   
+        $role_id = request()->role_id;
+        $validatePermissions = request()->validate([
+            'permission' => 'required'
+        ]);
+        $role = Role::find($role_id);
+        $permissions = request()->permission;
+        $addRole = $role->permissions()->attach($permissions);
+        if($addRole){
+            toast('Saved', 'success');
+        } else {
+            toast('Error','warning');
+        }
+        
+
+        return redirect()->back();
+        //return redirect('/roles');
     }
 }

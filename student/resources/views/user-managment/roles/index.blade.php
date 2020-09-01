@@ -3,24 +3,6 @@
 <!-- Main content -->
 <section class="content">
 	<div class="container-fluid">
-		<!-- Small boxes (Stat box) 
-		<div class="row">
-			<div class="col-lg-3 col-6">
-				 //small box
-				<div class="small-box bg-info">
-					<div class="inner">
-						<h3>+</h3>
-						<p>Create Role</p>
-					</div>
-					<div class="icon">
-						<i class="far fa-plus-square"></i>
-					</div>
-					<button style="border: none; width: 100%" class="small-box-footer" data-toggle="modal" data-target="#create-role">
-						Create Role
-						<i class="fas fa-arrow-circle-right"></i></button>
-        </div>
-      </div>
-		</div>-->
 		<div class="col-12">
 			<div class="card" style="border-radius:10px; border-top: 5px solid blue;">
 				<div class="card-header">

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use App\User;
 use App\Blog;
 use App\Permission;
+use App\Role;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -113,14 +114,17 @@ class UserController extends Controller
 
     public function editUser($user_id){
         $user = User::find($user_id);
-       //dd($user->roles);
-        $user_role = $user->roles;
+        
+        $pms = $user->permissions;
+        $users_roles = $user->roles;
+       
         $permissions = Permission::all();
-        $user_permissions = Permission::whereHas('users.roles',function ($query) {
-            $query->where('id',29);
-        })->toSql();
-       dd($user_permissions);
-        return view ('dashboard.user-dashboard.edit_profile', compact('user','user_role','permissions','user_permissions'));
+        $user_permissions = Permission::whereHas('users.roles',function ($query) use ($user_id) {
+            $query->where('user_id',$user_id);
+        })->get();
+       
+        return view ('dashboard.user-dashboard.edit_profile', 
+                    compact('user','users_roles','permissions','user_permissions','pms'));
     }
 
     public function update(User $user)

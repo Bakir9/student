@@ -180,11 +180,13 @@ Route::get('/poll/{id}/delete', 'PollController@delete');
 Route::get('/roles', 'RoleController@index');
 Route::get('delete/{id}/role', 'RoleController@deleteRole');
 Route::get('/roles/{id}', 'RoleController@showRolePermissions');
+Route::get('/role/create', 'RoleController@create');
 Route::get('/roles/create', function (){
     return view ('roles.create-role');
 });
+Route::get('/user/{user_id}/role/{role_id}', 'RoleController@editRoleForUser');
 
-Route::get('/role/create', 'RoleController@create');
+
 
 /**
  * Permission

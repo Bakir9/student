@@ -161,25 +161,29 @@
               <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
                 <button type="button" name="user_id" value="{{$user->id}}" 
                         class="btn btn-primary" data-toggle="modal" data-target="#create-role" style="margin: 15px 0">
-                  Create Role <i class="fas fa-arrow-circle-right"></i>
+                        Create Role <i class="fas fa-arrow-circle-right"></i>
                 </button>
                 <!--Test -->
-                @if(!$user_role->isEmpty())
-                  @foreach($user_role as $role)
+                @if(!$users_roles->isEmpty())
+                  @foreach($users_roles as $role)
                   <div id="accordion">
                     <div class="card">
                       <div class="card-header" id="headingOne">
                         <div class="row">
-                          <div class="col-md-8">
+                          <div class="col-md-4">
                             <h5 class="mb-0">
-                              <button name="role_id" value="{{$role->id}}" class="btn btn-link" data-toggle="modal" 
+                              <button name="role_id" value="{{$role->id}}" class="btn btn-link text-body" data-toggle="modal" 
                                       data-target="#permission-for-role">
                                 {{$role->name}}
                               </button>
                             </h5>
                           </div>
                           <div class="col-md-4">
-                            <p class="text-secondary" style="margin-top: 20px;"> {{$role->description}}</p>
+                            <p class="text-secondary" style="margin-top: 10px;"> {{$role->description}}</p>
+                          </div>
+                          <div class="col-md-4 align-items-right">
+                            <a class="text-body role-margin" href="/user/{{$user->id}}/role/{{$role->id}}"><i class="fas fa-pen"></i></a>
+                            <a class="text-body role-margin" href="/user/{{$user->id}}role/{{$role->id}}"><i class="fas fa-trash-alt"></i></a>
                           </div>
                         </div>
                       </div>
@@ -190,31 +194,51 @@
                 <!--kraj test-->
               </div>
               <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
-                <div class="row">
-                  <div class="col-md-12">
-                    <h3>Role: <span>Administrator</span></h3>
+                @foreach($users_roles as $role)
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h3>Role: <span>{{$role->name}}</span></h3>
+                    </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-2">
-                    <a href=""><i class="fas fa-check" style="color: green"></i>Edit User</a>
+                  <div class="row">
+                    @foreach($user_permissions as $user_permission)
+                      @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
+                        @if($user_permission->type == 'Blog')
+                          <div class="col-md-12">
+                            <h4>Blog</h4>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                          </div>
+                        @endif
+                        @if($user_permission->type == 'Job')
+                          <div class="col-md-12">
+                            <h4>Job</h4>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                          </div>
+                        @endif
+                        @if($user_permission->type == 'Poll')
+                          <div class="col-md-12">
+                            <h4>Poll</h4>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                          </div>
+                        @endif
+                        @if($user_permission->type == 'User')
+                          <div class="col-md-12">
+                            <h4>User</h4>
+                          </div>
+                          <div class="col-md-2">
+                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                          </div>
+                        @endif
+                      @endif
+                    @endforeach 
                   </div>
-                  <div class="col-md-2">
-                    <a href=""><i class="fas fa-check" style="color: green"></i>Edit User</a>
-                  </div>
-                  <div class="col-md-2">
-                    <a href=""><i class="fas fa-check" style="color: green"></i>Edit User</a>
-                  </div>
-                  <div class="col-md-2">
-                    <a href=""><i class="fas fa-check" style="color: green"></i>Edit User</a>
-                  </div>
-                  <div class="col-md-2">
-                    <a href=""><i class="fas fa-check" style="color: green"></i>Edit User</a>
-                  </div>
-                  <div class="col-md-2">
-                    <a href=""><i class="fas fa-check" style="color: green"></i>Edit User</a>
-                  </div>
-                </div>
+                @endforeach
               </div>
             </div>
           </div>

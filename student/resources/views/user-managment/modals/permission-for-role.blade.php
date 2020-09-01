@@ -7,7 +7,7 @@
 						<span aria-hidden="true">&times;</span>
 					</button>
 			</div>
-			@if(!$user_role->isEmpty())
+			@if(!$users_roles->isEmpty())
 			<div class="modal-body">
 				<div class="card">
 					<form action="/permissions/role/{{$role->id}}" method="GET">

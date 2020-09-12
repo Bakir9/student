@@ -30,7 +30,7 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-12">
-							<h3>Blog</h3>
+							<h3 style="margin-top: 10px;">Blog</h3>
 						</div>
 					</div>
 					<div class="row">
@@ -48,7 +48,7 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<h3 class="card-title" style="margin-bottom: 10px;">User</h3>
+							<h3 style="margin-top: 10px;">User</h3>
 						</div>
 					</div>
 					<div class="row">
@@ -66,7 +66,7 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<h3>Job</h3>
+							<h3 style="margin-top: 10px;">Job</h3>
 						</div>
 					</div>
 					<div class="row">
@@ -84,7 +84,7 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-12">
-							<h3>Poll</h3>
+							<h3 style="margin-top: 10px;">Poll</h3>
 						</div>
 					</div>
 					<div class="row">

@@ -122,7 +122,7 @@ class UserController extends Controller
         $user_permissions = Permission::whereHas('users.roles',function ($query) use ($user_id) {
             $query->where('user_id',$user_id);
         })->get();
-       
+        
         return view ('dashboard.user-dashboard.edit_profile', 
                     compact('user','users_roles','permissions','user_permissions','pms'));
     }

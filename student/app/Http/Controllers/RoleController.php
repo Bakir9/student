@@ -105,7 +105,7 @@ class RoleController extends Controller
             toast('Saved', 'success');
         } catch(Exception $e) {
             echo $e->getMessage();
-            toast('Error ne valja','warning');
+            toast('Error','warning');
         }
         $user_id = $this->getUserId();
         $user = User::find($user_id);
@@ -123,10 +123,52 @@ class RoleController extends Controller
             $query->where('user_id',$user_id)
                   ->where('id',$role_id);
         })->get();
-        
-        return view ('user-managment.roles.edit-role',compact('permission_throught_role','role', 'permissions'));
+        return view ('user-managment.roles.edit-role',compact('permission_throught_role','role', 'permissions','user'));
     }
-    public function deleteRoleForUser($user_id, $role_id){}
-    
 
+    public function deleteRoleForUser($user_id, $role_id)
+    {   
+        $user = User::find($user_id);
+        $role = Role::find($role_id);
+        
+        $permission_throught_role = Permission::whereHas('roles.users',function ($query) use ($user_id, $role_id) {
+            $query->where('user_id',$user_id)
+                  ->where('role_id',$role_id);
+        })->pluck('id')->toArray();
+        
+        //delete permissions under users_permissions
+        $user_permissions = $user->permissions()->detach($permission_throught_role);
+
+        //delete permissions under roles_permissions
+        $role_per = $role->permissions()->detach($permission_throught_role);
+
+        //delete roles under users_roles
+        $user_role = $user->roles()->detach($role_id);
+        
+        $role->delete();
+       if($user_permissions && $role_per && $user_role && $role) {
+           toast('Success','success');
+       } else {
+           toast('Ooops ! Something wrong !', 'error');
+       }
+       return redirect('/user/'. $user_id. '/edit'); 
+    }
+
+    public function updateUserPermissions($user_id, $role_id)
+    {
+        $user = User::find($user_id);
+        $role  = Role::find($role_id);
+        $permissions = request()->permission;
+        //dd($permissions);
+        $role_update = $role->permissions()->sync($permissions);
+        $user_permission = $user->permissions()->sync($permissions);
+        
+        if($role_update && $user_permission) {
+            toast('Data saved','success');
+        } else {
+            toast('Ooops! Somethin wrong !','error');
+        }
+        return redirect('/user/' .$user_id. '/edit');
+    }
 }
+

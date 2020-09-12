@@ -185,6 +185,8 @@ Route::get('/roles/create', function (){
     return view ('roles.create-role');
 });
 Route::get('/user/{user_id}/role/{role_id}', 'RoleController@editRoleForUser');
+Route::get('/user/{user_id}/role/{role_id}/update', 'RoleController@updateUserPermissions');
+Route::get('/user/{user_id}role/{role_id}/delete','RoleController@deleteRoleForUser');
 
 
 

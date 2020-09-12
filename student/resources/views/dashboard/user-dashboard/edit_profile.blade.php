@@ -182,8 +182,8 @@
                             <p class="text-secondary" style="margin-top: 10px;"> {{$role->description}}</p>
                           </div>
                           <div class="col-md-4 align-items-right">
-                            <a class="text-body role-margin" href="/user/{{$user->id}}/role/{{$role->id}}"><i class="fas fa-pen"></i></a>
-                            <a class="text-body role-margin" href="/user/{{$user->id}}role/{{$role->id}}"><i class="fas fa-trash-alt"></i></a>
+                            <a class="text-body role-margin" href="/user/{{$user->id}}/role/{{$role->id}}"><i class="fas fa-pen" style="color: green"></i></a>
+                            <a class="text-body role-margin" href="/user/{{$user->id}}role/{{$role->id}}/delete"><i class="fas fa-trash-alt"  style="color: red"></i></a>
                           </div>
                         </div>
                       </div>
@@ -195,49 +195,77 @@
               </div>
               <div class="tab-pane fade" id="custom-content-below-messages" role="tabpanel" aria-labelledby="custom-content-below-messages-tab">
                 @foreach($users_roles as $role)
+                <div class="card-body" style="border-radius: 10px; border-top: 5px solid #00a8cc">
                   <div class="row">
                     <div class="col-md-12">
                       <h3>Role: <span>{{$role->name}}</span></h3>
                     </div>
                   </div>
                   <div class="row">
+                    <div class="col-md-12">
+                      <h4>User</h4>
+                    </div>
+                  </div>
+                  <div class="row">
                     @foreach($user_permissions as $user_permission)
                       @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
-                        @if($user_permission->type == 'Blog')
-                          <div class="col-md-12">
-                            <h4>Blog</h4>
-                          </div>
-                          <div class="col-md-2">
-                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
-                          </div>
-                        @endif
-                        @if($user_permission->type == 'Job')
-                          <div class="col-md-12">
-                            <h4>Job</h4>
-                          </div>
-                          <div class="col-md-2">
-                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
-                          </div>
-                        @endif
-                        @if($user_permission->type == 'Poll')
-                          <div class="col-md-12">
-                            <h4>Poll</h4>
-                          </div>
-                          <div class="col-md-2">
-                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
-                          </div>
-                        @endif
                         @if($user_permission->type == 'User')
-                          <div class="col-md-12">
-                            <h4>User</h4>
-                          </div>
                           <div class="col-md-2">
                             <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
                           </div>
                         @endif
                       @endif
-                    @endforeach 
+                    @endforeach
                   </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4>Blog</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    @foreach($user_permissions as $user_permission)
+                      @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
+                        @if($user_permission->type == 'Blog')
+                          <div class="col-md-2">
+                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                          </div>
+                        @endif
+                      @endif
+                    @endforeach
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4>Job</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    @foreach($user_permissions as $user_permission)
+                      @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
+                        @if($user_permission->type == 'Job')
+                          <div class="col-md-2">
+                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                          </div>
+                        @endif
+                      @endif
+                    @endforeach
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4>Poll</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    @foreach($user_permissions as $user_permission)
+                      @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
+                        @if($user_permission->type == 'Poll')
+                          <div class="col-md-2">
+                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                          </div>
+                        @endif
+                      @endif
+                    @endforeach
+                  </div>
+                </div>
                 @endforeach
               </div>
             </div>

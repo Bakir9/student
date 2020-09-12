@@ -19,26 +19,32 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($roles as $role)
-							<tr>
-								<td>{{$role->name}}</td>
-								<td>{{$role->description}}</td>
-								<td>
-									<a href="#" class="btn btn-app">
-										<i class="fas fa-edit"></i>Edit
-									</a>
-									<a href="delete/{{$role->id}}/role" class="btn btn-app">
-										<i class="fas fa-times" style="color:red"></i> Delete
-                  </a>
-									<a href="/roles/{{$role->id}}" class="btn btn-app" >
-										<i class="fas fa-low-vision"></i>Permissions
-									</a>
-									<a href="#" class="btn btn-app" data-toggle="modal" data-target="#assign-role" >
-										<i class="fas fa-tasks"></i>Assigne
-									</a>
-								</td>
-							</tr>
-							@endforeach
+							@if(!is_null($roles))
+							
+								@foreach($roles as $role)
+								<tr>
+									<td>{{$role->name}}</td>
+									<td>{{$role->description}}</td>
+									<td>
+										<a href="#" class="btn btn-app">
+											<i class="fas fa-edit"></i>Edit
+										</a>
+										<a href="delete/{{$role->id}}/role" class="btn btn-app">
+											<i class="fas fa-times" style="color:red"></i> Delete
+										</a>
+										<a href="/roles/{{$role->id}}" class="btn btn-app" >
+											<i class="fas fa-low-vision"></i>Permissions
+										</a>
+										<a href="#" class="btn btn-app" data-toggle="modal" data-target="#assign-role" >
+											<i class="fas fa-tasks"></i>Assigne
+										</a>
+									</td>
+								</tr>
+								@endforeach
+								<p>nema roli, napravi</p>
+								@else 
+								
+							@endif
 						</tbody>
 						<tfoot>
 							<tr>

@@ -25,70 +25,98 @@
         <script src="{{ asset('js/app.js') }}"></script>-->
         <!--Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@1&display=swap" rel="stylesheet">
     </head>
-   <body>
-
-<!-- Login -->
-
-<div class="container" style="margin-top: 100px;">
-<div class="row">
-  <div class="col-lg-4"></div>
-    <div class="col-lg-5">
-      <div class="card">
-          <div class="card-header">
-            Sign In
+   <body class="hold-transition login-page">
+    <div class="row">
+      <div class="col-lg-4"></div>
+      <div class="col-lg-3">
+        <div class="login-box" style="margin-top: 35%">
+          <div class="login-box">
+            <a href="#" class="login-logo"><span class="logo-arrow"><</span> Student Service <span class="logo-arrow">></span></a>
           </div>
-        <div class="card-body">
-            @if(Session::has('success'))
+          <!-- /.login-logo -->
+          <div class="card">
+            <div class="card-body login-card-body">
+              @if(Session::has('success'))
               <div class="alert alert-success">
                 {{ Session::get('success') }}
                 @php
                     Session::forget('success');
                 @endphp
-            </div>
+              </div>
             @endif
 
-          @if (count($errors) > 0)
-            <div class="alert alert-danger" >
-              <ul style="margin-bottom: 0; list-style:none; padding-left: 15px;">
-                @foreach($errors->all() as $error)
+            @if (count($errors) > 0)
+              <div class="alert alert-danger" >
+                <ul style="margin-bottom: 0; list-style:none; padding-left: 15px;">
+                  @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </div>
-          @endif
-          
-          <form action="/userLogin" method="post"> 
-            @csrf
-              <div class="row">
-                <div class="form-group col-lg-12">
-                    <label for="Name">Username</label>
-                    <input type="text" class="form-control @error('username') border border-danger @enderror" name="username" id="username" value="{{ old('username') }}">
-                </div>
+                  @endforeach
+                </ul>
               </div>
-              <div class="row">
-                <div class="form-group col-lg-12">
-                    <label for="Name">Password</label>
-                    <input type="password" class="form-control @error('password') border border-danger @enderror" name="password" id="password">
+            @endif
+              <p class="login-box-msg" style="text-align: center">Sign in to start your session</p>
+        
+              <form action="/userLogin" method="post">
+                @csrf
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control @error('username') border border-danger @enderror" name="username" id="username" value="{{ old('username') }}" placeholder="Username">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-user"></span>
+                    </div>
+                  </div>
                 </div>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control @error('password') border border-danger @enderror" name="password" id="password" placeholder="Password">
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <span class="fas fa-lock"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-8">
+                    <div class="icheck-primary">
+                      <input type="checkbox" id="remember">
+                      <label for="remember">
+                        Remember Me
+                      </label>
+                    </div>
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-4">
+                    <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                  </div>
+                  <!-- /.col -->
+                </div>
+              </form>
+        
+              <div class="social-auth-links text-center mb-3">
+                <p>- OR -</p>
+                <a href="#" class="btn btn-block btn-primary">
+                  <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                </a>
+                <a href="#" class="btn btn-block btn-danger">
+                  <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                </a>
               </div>
-              <button type="submit" class="btn btn-secondary "> Sign In </button>
-              <p class="float-right mt-2">
-                <a href="/" class="text-secondary">
-                  <i class="fas fa-long-arrow-alt-left" style="font-size: 25px; vertical-align: middle;"></i> 
-                  Home</a>
+              <!-- /.social-auth-links -->
+        
+              <p class="mb-1">
+                <a href="forgot-password.html">I forgot my password</a>
               </p>
-          </form>
-          <div class="row no-margin">
-            <div class="col-lg-12" style="margin-top: 20px;">
-                <a href="/registration" class="text-secondary">You don't have account ? Create it</a>
+              <p class="mb-0">
+                <a href="register.html" class="text-center">Register a new membership</a>
+              </p>
             </div>
+            <!-- /.login-card-body -->
           </div>
         </div>
+      </div>
     </div>
-  </div>
-</div>
-
+  
 
 
 

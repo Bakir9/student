@@ -722,9 +722,17 @@ span.comments-time {
 .jobs-enviroment {
   background-image: url(/images/findJob.svg);
 }
-
-
-
+.login-box  {
+  text-align: center;
+}
+.login-logo {
+  color:rgb(61, 127, 202);
+  font-family: 'Chau Philomene One', sans-serif;
+  font-size: 25px;
+}
+.logo-arrow {
+  color:rgb(157, 178, 207);
+}
 @keyframes ani {
   0%{opacity: .1;}
   100%{opacity: 1;}

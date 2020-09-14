@@ -37,6 +37,7 @@
     </div>
     @else
     <div class="col-lg-4">
+      @if($poll != null)
       <div class="card shadow p-3" style="border-radius: 15px">
         <div class="card-header bg-light">
           <h4 class="text-info ">{{$poll->question}}</h4>
@@ -55,6 +56,7 @@
           </form>
         </div>
       </div>
+      @endif
     </div>
     @endif
   </div>

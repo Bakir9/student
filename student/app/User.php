@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Permission\HasPermissionsTrait;
 
-
 class User extends Authenticatable
 {
     use Notifiable;
@@ -64,4 +63,6 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Permission','users_permissions','user_id','permission_id');
     }
+
+    
 }

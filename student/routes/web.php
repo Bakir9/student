@@ -197,6 +197,6 @@ Route::get('/permissions', 'PermissionController@index');
 Route::get('/permission/create', 'PermissionController@create');
 Route::get('/delete/{id}/permission', 'PermissionController@delete');
 Route::get('/edit/{id}', 'PermissionController@edit');
-Route::get('/edit/{id}/permission', 'PermissionController@update');
+Route::put('/edit/{id}/permission', 'PermissionController@update');
 /**Permissions for Role */
 Route::get('/permissions/role/{role_id}', 'RoleController@savePermissionsForRole');

@@ -9,9 +9,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/edit/{{$permission->id}}" method="POST">
-          @method('PUT')
+        <form action="/edit/{{$permission->id}}/permission">
           @csrf
+          @method('PUT')
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">

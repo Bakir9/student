@@ -25,6 +25,7 @@ class RoleController extends Controller
         $validateName = request()->validate([
             'name' =>  'required',
             'description' => 'required',
+            'type' => 'required'
         ]);
         
         $user = User::find($user_id);
@@ -32,7 +33,8 @@ class RoleController extends Controller
         if($validateName) {
             $role = Role::create([
                 'name' => request('name'),
-                'description' => request('description')
+                'description' => request('description'),
+                'type' => request('type'),
             ]);
 
             toast('Role created', 'success');

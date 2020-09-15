@@ -73,7 +73,7 @@ class PollController extends Controller
            })->count();
 
            if($countPoll > 0) {
-             toast("Please use another date !",'warning');
+             toast('Please use another date !','warning');
            } else {
             if($validatePoll){
                 $poll = new Poll();

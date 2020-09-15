@@ -12,6 +12,7 @@ use App\User;
 use App\Blog;
 use App\Permission;
 use App\Role;
+use Gate;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -113,6 +114,11 @@ class UserController extends Controller
     }
 
     public function editUser($user_id){
+
+        if(Gate::denies('edit user')) {
+            return view('errors.403');
+        }
+        
         $user = User::find($user_id);
         
         $pms = $user->permissions;

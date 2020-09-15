@@ -17,24 +17,34 @@ trait HasPermissionsTrait {
         return $this->belongsToMany('App\Roles', 'users_roles');
     }
 
-    public function getAllPermissions() 
+    protected function getAllPermissions(array $permission)
     {
-        $permissions = Permission::where('user_id', auth()->user())->get();
-        dd($permissions);
+        return Permission::whereIn('name', $permission)->get();
     }
-    /*protected function getAllPermissions(array $permissions) {}
-    
-    protected function hasPermission($permission){}
-    
-		public function hasRole(... $roles){}
-			
-		public function hasPermissionThroughRole($permission){}
-		
-		public function hasPermissionTo($permission){}
-	
-		public function refreshPermissions(... $permission){}
 
-		public function withdrawPermissionsTo(... $permission){}
-		
-		public function givePermissionsTo(... $permission){}*/
+    public function hasAnyRole($roles) 
+    {
+        if($this->roles()->whereIn('name', $roles)->first()) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function hasRole($role) 
+    {
+        if($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        
+        return false;
+    }
+
+    public function hasPermissionTo($permission) 
+    {
+        if($this->permissions()->where('name',$permission)->get()) {
+            return true;
+        }
+        return false;
+    }
 }

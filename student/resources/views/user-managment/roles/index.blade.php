@@ -19,8 +19,6 @@
 							</tr>
 						</thead>
 						<tbody>
-							@if(!is_null($roles))
-							
 								@foreach($roles as $role)
 								<tr>
 									<td>{{$role->name}}</td>
@@ -35,10 +33,6 @@
 									</td>
 								</tr>
 								@endforeach
-								<p>nema roli, napravi</p>
-								@else 
-								
-							@endif
 						</tbody>
 						<tfoot>
 							<tr>

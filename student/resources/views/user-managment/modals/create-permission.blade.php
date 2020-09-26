@@ -38,6 +38,7 @@
                     <option value="Job">Job</option>
                     <option value="Poll">Poll</option>
                     <option value="User">User</option>
+                    <option value="Dashboard">Dashboard</option>
                   </select>
                 </div>
               </div>

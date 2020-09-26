@@ -6,6 +6,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use App\Permission;
 
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -25,12 +26,5 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        /*Gate::define('edit-user', function ($user) {
-           // return $user->hasRole('edit-user');
-           return $user->hasPermission('edit-user');
-        });*/
-
-        
     }
 }

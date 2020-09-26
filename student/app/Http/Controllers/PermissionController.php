@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Permission;
 
@@ -26,6 +26,7 @@ class PermissionController extends Controller
             $permission = Permission::create([
                 'name' => request('name'),
                 'description' => request('description'),
+                'slug'=> Str::slug(request('name'), '-'),
                 'type' => request('type')
             ]);
 

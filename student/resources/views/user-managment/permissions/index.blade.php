@@ -99,6 +99,24 @@
 								</div>
 							@endif
 						@endforeach
+          </div>
+          <div class="row">
+						<div class="col-sm-12">
+							<h3 style="margin-top: 10px;">Dashboard</h3>
+						</div>
+					</div>
+					<div class="row">
+						@foreach($permissions as $permission)
+							@if($permission->type == 'Dashboard')
+								<div class="col-sm-3">
+									<div class="permission" style="margin-top: 10px;">
+										<a class="btn btn-info" href="/delete/{{$permission->id}}/permission" style="margin-right: 5px; color: red;"><i class="fas fa-times"></i></a>
+										<button class="btn btn-info open-modal" value="{{$permission->id}}" type="submit" style="margin-right: 5px" data-toggle="modal" data-target="#edit-permission"><i class="fas fa-pen"></i></button>
+										<p style="display: inline">{{$permission->name}}</p>
+									</div>
+								</div>
+							@endif
+						@endforeach
 					</div>
 				</div>
 			</div>

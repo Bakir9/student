@@ -38,7 +38,7 @@
                 </li>
             @else 
                 <li class="nav-item">
-                    <a class="nav-link" href="/loginProba">Sign in <i class="fas fa-user-circle" style="font-size: 25px; vertical-align: middle;"></i></a>
+                    <a class="nav-link" href="/sign-in">Sign in <i class="fas fa-user-circle" style="font-size: 25px; vertical-align: middle;"></i></a>
                 </li>
             @endif
         </ul>

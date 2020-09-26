@@ -24,6 +24,10 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {   
+    /*public function __construct()
+    {
+        $this->middleware('auth');
+    }*/
     public function userLogin(Request $request)
     {   
         $messages = [
@@ -114,10 +118,6 @@ class UserController extends Controller
     }
 
     public function editUser($user_id){
-
-        if(Gate::denies('edit user')) {
-            return view('errors.403');
-        }
         
         $user = User::find($user_id);
         

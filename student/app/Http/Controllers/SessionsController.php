@@ -14,6 +14,6 @@ class SessionsController extends Controller
     public function destroy()
     {
         auth()->logout();
-        return redirect()->to('/loginProba')->with('Uspjesna odjava');
+        return redirect()->to('/sign-in')->with('Uspjesna odjava');
     }
 }

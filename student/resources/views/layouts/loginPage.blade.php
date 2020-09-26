@@ -58,7 +58,7 @@
             @endif
               <p class="login-box-msg" style="text-align: center">Sign in to start your session</p>
         
-              <form action="/userLogin" method="post">
+              <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="input-group mb-3">
                   <input type="text" class="form-control @error('username') border border-danger @enderror" name="username" id="username" value="{{ old('username') }}" placeholder="Username">

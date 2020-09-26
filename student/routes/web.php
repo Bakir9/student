@@ -27,9 +27,10 @@ Route::get('/apartment-details', function (){
     return view ('apartment.apartment-details');
 });
 
-Route::get('/loginProba', function (){
+Route::get('/sign-in', function (){
     return view ('layouts.loginPage');
 });
+
 
 /**Tags and category */
 Route::get('/category', function (){
@@ -54,7 +55,7 @@ Route::get('/newUser', function (){
 });
 
 /**Login */
-Route::post('/userLogin', 'UserController@userLogin');
+Route::post('/login', 'UserController@userLogin')->name('login');
 //------------Logout-------------------------------
 Route::get('/logout', 'SessionsController@destroy');
 /** Adding data into database */
@@ -67,7 +68,7 @@ Route::get('/delete/{id}/user', 'UserController@deleteUser');
 Route::get('/users', 'UserController@count_user');
 
 /***Edit users data */
-Route::get('/user/{user_id}/edit', 'UserController@editUser');
+Route::get('/user/{user_id}/edit', 'UserController@editUser'); 
 Route::get('/user_profile/{user}/edit', 'UserController@editUser');
 
 /**Update user data */

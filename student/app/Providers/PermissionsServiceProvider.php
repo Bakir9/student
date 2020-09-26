@@ -5,9 +5,9 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Gate;
-
+use Auth;
 use App\Permission;
-
+use App\Roles;
 
 class PermissionsServiceProvider extends ServiceProvider
 {
@@ -38,5 +38,17 @@ class PermissionsServiceProvider extends ServiceProvider
             report ($e);
             return false;
         }
+
+        /*Blade::directive('role', function ($role) {
+            $condition = false;
+            if(auth()->user()->hasRole($role)) {
+                $condition = true;
+            }
+            return "<?php if($condition) { ?>";
+        });
+
+       Blade::directive('endrole', function ($role) {
+       return "<?php } ?>";
+       }); */
     }
 }

@@ -22,27 +22,28 @@ trait HasPermissionsTrait {
         return Permission::whereIn('name', $permission)->get();
     }
 
-    public function hasAnyRole($roles) 
+    public function hasAnyRoles($roles) 
     {
-        if($this->roles()->whereIn('name', $roles)->first()) {
+        if($this->roles()->whereIn('type', $roles)->first()) {
             return true;
         }
         
         return false;
     }
 
-    public function hasRole($role) 
-    {
-        if($this->roles()->where('name', $role)->first()) {
-            return true;
+    public function hasRole(... $roles) 
+    {  
+        foreach($roles as $role) {
+            if($this->roles->contains('type', $role)) {
+                return true;
         }
-        
+    }
         return false;
     }
 
     public function hasPermissionTo($permission) 
     {
-        if($this->permissions()->where('name',$permission)->get()) {
+        if($this->permissions()->where('slug',$permission)->get()) {
             return true;
         }
         return false;

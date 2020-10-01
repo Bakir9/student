@@ -44,10 +44,9 @@ Route::get('/tags', function (){
 Route::get('/edit', function () {
     return view('dashboard.user-dashboard.edit_profile');
 });
-
-Route::get('/dashboard', function (){
-    return view ('dashboard.admin-home');
-});
+    Route::get('/dashboard', function (){
+        return view ('dashboard.admin-home');
+    })->middleware('role:administrator');
 
 /** Users routes */
 Route::get('/newUser', function (){
@@ -56,6 +55,7 @@ Route::get('/newUser', function (){
 
 /**Login */
 Route::post('/login', 'UserController@userLogin')->name('login');
+
 //------------Logout-------------------------------
 Route::get('/logout', 'SessionsController@destroy');
 /** Adding data into database */

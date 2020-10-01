@@ -16,14 +16,14 @@
               <li class="nav-item">
                 <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Profile</a>
               </li>
-             @can('edit-user')
+             @administrator('administrator')
               <li class="nav-item">
                 <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Role</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" id="custom-content-below-messages-tab" data-toggle="pill" href="#custom-content-below-messages" role="tab" aria-controls="custom-content-below-messages" aria-selected="false">Permission</a>
               </li>
-            @endcan
+            @endadministrator
             </ul>
             <div class="tab-content" id="custom-content-below-tabContent">
               <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
@@ -261,6 +261,22 @@
                     @foreach($user_permissions as $user_permission)
                       @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
                         @if($user_permission->type == 'Poll')
+                          <div class="col-md-2">
+                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                          </div>
+                        @endif
+                      @endif
+                    @endforeach
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <h4>Dashboard</h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    @foreach($user_permissions as $user_permission)
+                      @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
+                        @if($user_permission->type == 'Dashboard')
                           <div class="col-md-2">
                             <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
                           </div>

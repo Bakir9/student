@@ -116,6 +116,7 @@ class RoleController extends Controller
 
         return redirect()->back();
     }
+    
     public function editRoleForUser($user_id, $role_id)
     {
         $user = User::find($user_id);

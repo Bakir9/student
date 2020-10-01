@@ -51,28 +51,30 @@
 														<label class="form-check-label" for="exampleCheck1">{{$permission->name}}</label>
 													</div>
 												</div>
-												@endif
-											@endforeach
+											@endif
+										@endforeach
 									</div>
-									<div class="row">
-										<div class="col-md-12">
-											<h3 class="card-title" style="margin: 10px 0 10px 10px;">User</h3>
+									@user('user')
+										<div class="row">
+											<div class="col-md-12">
+												<h3 class="card-title" style="margin: 10px 0 10px 10px;">User</h3>
+											</div>
 										</div>
-									</div>
-									<div class="row">
-										@foreach($permissions as $permission)
-											@if($permission->type =='User')
-												<div class="col-md-2" >
-													<div class="form-check">
-														<input type="checkbox" class="form-check-input" 
-																	value="{{$permission->id}}" name="permission[]" id="exampleCheck1"
-																	{{in_array($permission->id, $role->permissions->pluck('id')->toArray()) ? 'checked' : '' }}>
-														<label class="form-check-label" for="exampleCheck1">{{$permission->name}}</label>
+										<div class="row">
+											@foreach($permissions as $permission)
+												@if($permission->type =='User')
+													<div class="col-md-2" >
+														<div class="form-check">
+															<input type="checkbox" class="form-check-input" 
+																		value="{{$permission->id}}" name="permission[]" id="exampleCheck1"
+																		{{in_array($permission->id, $role->permissions->pluck('id')->toArray()) ? 'checked' : '' }}>
+															<label class="form-check-label" for="exampleCheck1">{{$permission->name}}</label>
+														</div>
 													</div>
-												</div>
-												@endif
-											@endforeach
-									</div>
+													@endif
+												@endforeach
+										</div>
+									@enduser
 									<div class="row">
 										<div class="col-md-12">
 											<h3 class="card-title" style="margin: 10px 0 10px 10px;">Poll</h3>
@@ -92,6 +94,27 @@
 												@endif
 											@endforeach
 									</div>
+									@user('user')
+									<div class="row">
+										<div class="col-md-12">
+											<h3 class="card-title" style="margin: 10px 0 10px 10px;">Dashboard</h3>
+										</div>
+									</div>
+									<div class="row">
+										@foreach($permissions as $permission)
+											@if($permission->type == 'Dashboard')
+												<div class="col-md-2">
+													<div class="form-check">
+														<input type="checkbox" class="form-check-input"
+														 value="{{$permission->id}}" name="permission[]" id="exampleCheck1"
+														{{in_array($permission->id, $role->permissions->pluck('id')->toArray()) ? 'checked' : '' }}>
+														<label class="form-check-label" for="exampleCheck1">{{$permission->name}}</label>
+													</div>
+												</div>
+											@endif
+										@endforeach
+									</div>
+									@enduser
 									<div class="card-footer" style="margin-top: 10px">
 										<div class="row">
 											<div class="col-md-12">

@@ -13,9 +13,9 @@ class RoleMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $role, $permission = null)
+    public function handle($request,Closure $next, $roles, $permission = null)
     {
-        if(!$request->user()->hasRole($role)){
+        if(!$request->user()->hasRole($roles)) {
             return view('errors.access-denied');
         }
 

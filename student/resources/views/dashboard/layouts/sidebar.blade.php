@@ -181,6 +181,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          @administrator('administrator')
           <li class="nav-item has-treeview ">
             <a href="#" class="nav-link">
               <i class="fas fa-tasks"></i>
@@ -197,15 +198,15 @@
                   <p>Roles</p>
                 </a>
               </li>
-              @endcan
-              @can('crud-permissions')
+            @endcan
+            @can('crud-permission')
               <li class="nav-item">
                 <a href="/permissions" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Permissions</p>
                 </a>
               </li>
-              @endcan
+            @endcan
               <li class="nav-item">
                 <a href="/users" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -216,6 +217,7 @@
               </li>
             </ul>
           </li>
+          @endadministrator
           <li class="nav-item has-treeview ">
             <a href="/user_profile/{{Auth::user()->id}}/edit" class="nav-link">
               <i class="fas fa-user"></i>

@@ -9,9 +9,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="/edit/{{$permission->id}}/permission">
+        <form action="/edit/{{$permission->id}}/permission" name="test" method="GET" id=edit-data>
           @csrf
-          @method('PUT')
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
@@ -34,10 +33,27 @@
                 @enderror
               </div>
             </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Permission Type</label>
+                <select class="form-control select2 @error('type')  border border-danger @enderror" 
+                        id="type" name="type" style="width: 100%;">
+                  <option>Select type</option>
+                  <option value="Blog">Blog</option>
+                  <option value="Job" >Job</option>
+                  <option value="Poll" >Poll</option>
+                  <option value="User" >User</option>
+                  <option value="Dashboard">Dashboard</option>
+                </select>
+                @error('type')
+                <p class="text-danger" role="alert">The type is required</p>
+              @enderror
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" value = {{$permission->id}} id = "permission_id" class="btn btn-primary">Save</button>
           </div>
         </form>
       </div>

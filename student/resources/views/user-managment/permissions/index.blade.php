@@ -37,6 +37,7 @@
 						@foreach($permissions as $permission)
 							@if($permission->type == 'Blog')
 								<div class="col-sm-3">
+									<input type="hidden" name="permissionId" value="{{ $permission->id }}" />
 									<div class="permission" style="margin-top: 10px;">
 										<a class="btn btn-info" href="/delete/{{$permission->id}}/permission" style="margin-right: 5px; color: red;"><i class="fas fa-times"></i></a>
 										<button class="btn btn-info open-modal" value="{{$permission->id}}" type="submit" style="margin-right: 5px" data-toggle="modal" data-target="#edit-permission"><i class="fas fa-pen"></i></button>
@@ -55,9 +56,10 @@
 						@foreach($permissions as $permission)
 							@if($permission->type == 'User')
 								<div class="col-sm-3">
+									<input type="hidden" name="permissionId" value="{{ $permission->id }}" />
 									<div class="permission" style="margin-top: 10px;">
-										<a class="btn btn-info" href="/delete/{{$permission->id}}/permission" style="margin-right: 5px; color: red;"><i class="fas fa-times"></i></a>
-										<button class="btn btn-info open-modal" value="{{$permission->id}}" type="submit" style="margin-right: 5px" data-toggle="modal" data-target="#edit-permission"><i class="fas fa-pen"></i></button>
+										<a class="btn btn-info " href="/delete/{{$permission->id}}/permission" style="margin-right: 5px; color: red;"><i class="fas fa-times"></i></a>
+										<button class="btn btn-info open-modal btn-edit" name="permisija" value="{{$permission->id}}" type="submit" style="margin-right: 5px" data-toggle="modal" data-target="#edit-permission"><i class="fas fa-pen"></i></button>
 										<p style="display: inline">{{$permission->name}}</p>
 									</div>
 								</div>
@@ -73,6 +75,7 @@
 						@foreach($permissions as $permission)
 							@if($permission->type == 'Job')
 								<div class="col-sm-3">
+									<input type="hidden" name="permissionId" value="{{ $permission->id }}" />
 									<div class="permission" style="margin-top: 10px;">
 										<a class="btn btn-info" href="/delete/{{$permission->id}}/permission" style="margin-right: 5px; color: red;"><i class="fas fa-times"></i></a>
 										<button class="btn btn-info open-modal" value="{{$permission->id}}" type="submit" style="margin-right: 5px" data-toggle="modal" data-target="#edit-permission"><i class="fas fa-pen"></i></button>
@@ -91,6 +94,7 @@
 						@foreach($permissions as $permission)
 							@if($permission->type == 'Poll')
 								<div class="col-sm-3">
+									<input type="hidden" name="permissionId" value="{{ $permission->id }}" />
 									<div class="permission" style="margin-top: 10px;">
 										<a class="btn btn-info" href="/delete/{{$permission->id}}/permission" style="margin-right: 5px; color: red;"><i class="fas fa-times"></i></a>
 										<button class="btn btn-info open-modal" value="{{$permission->id}}" type="submit" style="margin-right: 5px" data-toggle="modal" data-target="#edit-permission"><i class="fas fa-pen"></i></button>
@@ -109,9 +113,12 @@
 						@foreach($permissions as $permission)
 							@if($permission->type == 'Dashboard')
 								<div class="col-sm-3">
+									<input type="hidden" name="permissionId" id="permissionId" value="{{ $permission->id }}" />
 									<div class="permission" style="margin-top: 10px;">
 										<a class="btn btn-info" href="/delete/{{$permission->id}}/permission" style="margin-right: 5px; color: red;"><i class="fas fa-times"></i></a>
-										<button class="btn btn-info open-modal" value="{{$permission->id}}" type="submit" style="margin-right: 5px" data-toggle="modal" data-target="#edit-permission"><i class="fas fa-pen"></i></button>
+											<button class="btn btn-info open-modal" value="{{$permission->id}}" type="button" style="margin-right: 5px" data-toggle="modal" data-target="#edit-permission">
+											<i class="fas fa-pen"></i>
+										</button>
 										<p style="display: inline">{{$permission->name}}</p>
 									</div>
 								</div>
@@ -126,20 +133,19 @@
 
 @include('user-managment.modals.edit-permission')
 @include('user-managment.modals.create-permission')
-
-
 @include('dashboard.layouts.footer')
+
+
 <script>
 $(document).on('click','.open-modal',function(){
-	console.log("dalje radi");
 	var permission_id = $(this).val();
 	$.ajax({
 		type: "GET",
 		url: "/edit/"+ permission_id,
 		success: function(data){
-			console.log(data);
 			$('#name').val(data.name);
 			$('#description').val(data.description);
+			$('#type').val(data.type);
 			$('.edit-permission').modal('show');
 		},
 		error: function(data) {
@@ -147,5 +153,38 @@ $(document).on('click','.open-modal',function(){
 		}
 	});
 });
+
+$('.btn-edit').on('click', function(){
+	console.log("proslo");
+	//var permisija = $('.btn-edit').val();
+	var permisija =  $(this).closest('[name=permissionId]').val();
+	var formAction = "/edit/" +permisija+ "/permission"
+	var forma = $('.test').attr('action', formAction);
+	
+console.log(permisija);
+});
+/*
+$('#edit-data').on('submit', function (e){
+	e.preventDefault();
+	var id = $("#permission_id").val();
+	console.log(id);
+	//var url = "{{URL('/edit/' .$permission->id. '/permission')}}";
+	//console.log(url);
+	$.ajax({
+            url: '/edit/'+id+'/permission',
+						type:"GET",
+						data: {
+							name:$('#name').val(),
+							description:$('#description').val(),
+							type:$('#type').val()
+						},
+			success: function (data){
+						console.log(data);
+			},
+			error: function(error) {
+						console.log(error);
+			}
+		});
+	});/*
 </script>
 

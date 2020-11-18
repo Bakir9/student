@@ -54,7 +54,6 @@
 											@endif
 										@endforeach
 									</div>
-									@user('user')
 										<div class="row">
 											<div class="col-md-12">
 												<h3 class="card-title" style="margin: 10px 0 10px 10px;">User</h3>
@@ -74,7 +73,6 @@
 													@endif
 												@endforeach
 										</div>
-									@enduser
 									<div class="row">
 										<div class="col-md-12">
 											<h3 class="card-title" style="margin: 10px 0 10px 10px;">Poll</h3>
@@ -94,7 +92,6 @@
 												@endif
 											@endforeach
 									</div>
-									@user('user')
 									<div class="row">
 										<div class="col-md-12">
 											<h3 class="card-title" style="margin: 10px 0 10px 10px;">Dashboard</h3>
@@ -114,7 +111,6 @@
 											@endif
 										@endforeach
 									</div>
-									@enduser
 									<div class="card-footer" style="margin-top: 10px">
 										<div class="row">
 											<div class="col-md-12">

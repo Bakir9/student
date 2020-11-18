@@ -9,7 +9,7 @@ $(document).ready(function(){
         },
       
         {
-          duration: 4000,
+          duration: 3000,
           easing:'linear',
           step: function() {
             $this.text(Math.floor(this.countNum));
@@ -56,8 +56,30 @@ $(document).ready(function(){
       return false;
     });
 
-    
+    $('#edit-permission').on('hidden', function () {
+      //$('#Form_Id').find('input[type="text"]').val('');
+      $modal.find('form')[0].reset();
+   });    
   
+   $('#edit-data').on('submit', function (){
+		
+		console.log("proslo");
+	/*	$.ajax({
+            url: '/edit/{{$permission->id}}/permission',
+            type:"GET",
+            data: {
+                "_token": "{{csrf_token()}}",
+            },
+			success: function (response){
+                alert("krenulo");
+				console.log(url);
+			},
+			error: function(error) {
+                console.log(error);
+				console.log(url);
+			}
+		});*/
+	});
 });
 
 

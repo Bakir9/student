@@ -41,11 +41,13 @@ trait HasPermissionsTrait {
         return false;
     }
 
+    protected function hasPermission($permission) {
+
+        return (bool) $this->permissions->where('slug', $permission->slug)->count();
+      }
+
     public function hasPermissionTo($permission) 
-    {
-        if($this->permissions()->where('slug',$permission)->get()) {
-            return true;
-        }
-        return false;
+    {   
+        return $this->hasPermission($permission);
     }
 }

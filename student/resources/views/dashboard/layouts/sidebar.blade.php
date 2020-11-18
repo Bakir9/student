@@ -182,41 +182,41 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           @administrator('administrator')
-          <li class="nav-item has-treeview ">
-            <a href="#" class="nav-link">
-              <i class="fas fa-tasks"></i>
-              <p>
-                User Managment
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-            @can('crud-roles')
-              <li class="nav-item">
-                <a href="/roles" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Roles</p>
-                </a>
-              </li>
-            @endcan
-            @can('crud-permission')
-              <li class="nav-item">
-                <a href="/permissions" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Permissions</p>
-                </a>
-              </li>
-            @endcan
-              <li class="nav-item">
-                <a href="/users" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Users
-                  </p>
-                </a>
-              </li>
-            </ul>
-          </li>
+            <li class="nav-item has-treeview ">
+              <a href="#" class="nav-link">
+                <i class="fas fa-tasks"></i>
+                <p>
+                  User Managment
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+              @can('crud-roles')
+                <li class="nav-item">
+                  <a href="/roles" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Roles</p>
+                  </a>
+                </li>
+              @endcan
+              @can('crud-permission')
+                <li class="nav-item">
+                  <a href="/permissions" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Permissions</p>
+                  </a>
+                </li>
+              @endcan
+                <li class="nav-item">
+                  <a href="/users" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Users
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </li>
           @endadministrator
           <li class="nav-item has-treeview ">
             <a href="/user_profile/{{Auth::user()->id}}/edit" class="nav-link">
@@ -270,36 +270,36 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @can('statistic')
+                <li class="nav-item">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Statistics</p>
+                  </a>
+                </li>
+              @endcan
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Statistics</p>
+                  <p>Jobs</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="/list-jobs" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Jobs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Jobs</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/job" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create job offer</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/myjobs" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>My jobs</p>
-                </a>
-              </li>
+              @can('create-job')
+                <li class="nav-item">
+                  <a href="/job" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Create Offer</p>
+                  </a>
+                </li>
+              @endcan
+              @can('my-jobs')
+                <li class="nav-item">
+                  <a href="/myjobs" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>My jobs</p>
+                  </a>
+                </li>
+              @endcan
             </ul>
           </li>
           <li class="nav-item has-treeview ">
@@ -311,24 +311,32 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/home" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Blog</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/blog" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create blog</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/myblogs" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>My blog</p>
-                </a>
-              </li>
+              @administrator('administrator')
+                @can('list-of-all-blog')
+                  <li class="nav-item">
+                    <a href="/home" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>List Blog</p>
+                    </a>
+                  </li>
+                @endcan
+              @endadministrator
+              @can('create-blog')
+                <li class="nav-item">
+                  <a href="/blog" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Create blog</p>
+                  </a>
+                </li>
+              @endcan
+              @can('my-blog')
+                <li class="nav-item">
+                  <a href="/myblogs" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>My blog</p>
+                  </a>
+                </li>
+              @endcan
             </ul>
           </li>
           <li class="nav-item has-treeview ">
@@ -340,24 +348,30 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/poll" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create Poll</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/list_poll" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>List Poll</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="/mypoll" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>My Poll</p>
-                </a>
-              </li>
+              @can('create-poll')
+                <li class="nav-item">
+                  <a href="/poll" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Create Poll</p>
+                  </a>
+                </li>
+              @endcan
+              @can('list-of-poll')
+                <li class="nav-item">
+                  <a href="/list_poll" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Poll</p>
+                  </a>
+                </li>
+              @endcan
+              @can('my-poll')
+                <li class="nav-item">
+                  <a href="/mypoll" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>My Poll</p>
+                  </a>
+                </li>
+              @endcan
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

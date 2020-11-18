@@ -26,15 +26,21 @@
                   <td>{{ $blog->user['first_name'] }}</td>
                 <td>{{ $blog->created_at }}</td>
                 <td>
-                  <a href="/blog/{{ $blog->post_slug}}/edit" class="btn btn-app">
-                    <i class="fas fa-edit"></i>Edit
-                  </a>
-                  <a href="/delete/{{ $blog->id }}/blog" class="btn btn-app">
-                    <i class="fas fa-times" style="color:red"></i> Delete
-                  </a>
+                  @can('edit-blog')
+                    <a href="/blog/{{ $blog->post_slug}}/edit" class="btn btn-app">
+                      <i class="fas fa-edit"></i>Edit
+                    </a>
+                  @endcan
+                  @can('delete-blog')
+                    <a href="/delete/{{ $blog->id }}/blog" class="btn btn-app">
+                      <i class="fas fa-times" style="color:red"></i> Delete
+                    </a>
+                  @endcan
+                  @can('comments')
                   <a href="/blog/{{$blog->id}}/comments" class="btn btn-app">
                     <i class="fas fa-comments" style="color:black"></i> Comments
                   </a>
+                  @endcan
                 </td>
               </tr>
               @endforeach

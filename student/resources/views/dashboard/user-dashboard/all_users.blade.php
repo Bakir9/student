@@ -3,18 +3,20 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-3 col-6">
-        <div class="small-box bg-gradient-success">
-          <div class="inner">
-            <h3>+</h3>
-            <p>Create account</p>
+      @can('create-user')
+        <div class="col-lg-3 col-6">
+          <div class="small-box bg-gradient-success">
+            <div class="inner">
+              <h3>+</h3>
+              <p>Create account</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <a href="/newUser" class="small-box-footer">Create account<i class="fas fa-arrow-circle-right"></i></a>
           </div>
-          <div class="icon">
-              <i class="fas fa-user-plus"></i>
-          </div>
-          <a href="/newUser" class="small-box-footer">Create account<i class="fas fa-arrow-circle-right"></i></a>
         </div>
-      </div>
+      @endcan
       <div class="col-lg-3 col-6">
         <div class="small-box bg-gradient-warning">
           <div class="inner">
@@ -68,24 +70,27 @@
                   <td>{{ $user->type }}</td>
                   <td>{{ $user->active == 1 ? 'Active' : 'Disabled' }}</td>
                   <td>
-                    <a href="/user/{{ $user->id}}/edit" class="btn btn-app">
-                      <i class="fas fa-edit"></i>Edit
-                    </a>
-                    <a href="/delete/{{ $user->id }}/user " class="btn btn-app">
-                      <i class="fas fa-times" style="color:red"></i> Delete
-                    </a>
-                    <a href="#" name="status" value="1" class="btn btn-app">
-                      <i class="fas fa-low-vision" style="color:rgb(165, 184, 165)"></i>Assign Roles
-                    </a>
-                    @if ($user->active == 1) 
-                     <a href="/status_change/{{$user->id}} " name="status" value="0" class="btn btn-app">
-                      <i class="fas fa-lock-open" style="color:red"></i>Disable
-                    </a> 
-                    @else 
-                    <a href="/status_change/{{$user->id}}" name="status" value="1" class="btn btn-app">
-                      <i class="fas fa-lock" style="color:green"></i>Activate
-                    </a>
-                    @endif
+                    @can('edit-user')
+                      <a href="/user/{{$user->id}}/edit" class="btn btn-app">
+                        <i class="fas fa-edit"></i>Edit
+                      </a>
+                    @endcan
+                    @can('delete-user')
+                      <a href="/delete/{{$user->id }}/user " class="btn btn-app">
+                        <i class="fas fa-times" style="color:red"></i> Delete
+                      </a>
+                    @endcan
+                    @can('status-change')
+                      @if ($user->active == 1) 
+                        <a href="/status_change/{{$user->id}} " name="status" value="0" class="btn btn-app">
+                          <i class="fas fa-lock-open" style="color:red"></i>Disable
+                        </a> 
+                      @else 
+                        <a href="/status_change/{{$user->id}}" name="status" value="1" class="btn btn-app">
+                          <i class="fas fa-lock" style="color:green"></i>Activate
+                        </a>
+                      @endif
+                    @endcan
                   </td>
                 </tr>
                 @endforeach

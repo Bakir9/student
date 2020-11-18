@@ -58,15 +58,28 @@ class PermissionController extends Controller
         return response()->json($permission);
     }
 
-    public function update($id)
-    {
-        $permission = Permission::where('id',$id)->update();
+    /*public function update($id)
+    {   
+      $permission = Permission::where('id',$id)->firstOrFail();
 
-        if($permission) {
+       $validate = request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'type' => 'required',
+        ]);
+
+        if($validate) {
+            $permission->name = request()->name;
+            $permission->description = request()->description;
+            $permission->slug = Str::slug(request()->name);
+            $permission->type = request()->type;
+        }
+
+        if($permission->save()) {
             toast('Data saved', 'success');
         } else {
             toast('Something wrong !', 'warning');
         }
         return redirect('/permissions');
-    }
+    }*/
 }

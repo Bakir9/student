@@ -78,7 +78,7 @@ class JobController extends Controller
                 ]);
            }
             Alert::success('Success!','Job offer created');
-            $request->session()->put('action', 'Created new job');
+            //$request->session()->put('action', 'Created new job');
         } else {
              Alert::warning('Oops!','Something wrong !');
           }
@@ -87,7 +87,7 @@ class JobController extends Controller
 
     public function activeJobs()
     {
-        $jobs = Job::where('valid_until', '<=', now())->get();
+        $jobs = Job::where('valid_until', '>=', now())->get();
         
         return view('jobs.jobs',compact('jobs'));
     }
@@ -95,7 +95,6 @@ class JobController extends Controller
     public function jobs()
     {
         $jobs = Job::all();
-        
         return view('jobs.list-jobs',compact('jobs','poll','options'));
     }
 

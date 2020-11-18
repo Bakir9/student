@@ -3,7 +3,7 @@
         <h3 class="popular">Browse Course by Categories</h3>
     </div>
 </div>
-<div class="row no-margin" style="margin: 0;">
+	<div class="row no-margin justify-content-md-center " style="margin: 0;">
     <div class="col-lg-2 courseInfo shadow-lg p-3 mb-5">
         <i class="fa fa-code" style="margin-top: 35px;"><p class="course">Coding</p></i> 
     </div>
@@ -19,6 +19,8 @@
     <div class="col-lg-2 courseInfo shadow-lg p-3 mb-5">
         <i class="fab fa-android" style="margin-top: 30px;"><p class="course">Android</p></i> 
     </div>
+	</div>
+	<div class="row no-margin justify-content-md-center" style="margin: 0;">
     <div class="col-lg-2 courseInfo shadow-lg p-3 mb-5">
         <i class="fab fa-python" style="margin-top: 30px;"><p class="course">Python</p></i> 
     </div>
@@ -34,7 +36,7 @@
     <div class="col-lg-2 courseInfo shadow-lg p-3 mb-5">
         <i class="fab fa-android" style="margin-top: 30px;"><p class="course">Android</p></i> 
     </div>
-</div>
+	</div>
 <div class="row no-margin">
     <div class="col-lg-12">
         <h3 class="popular">Popular course</h3>

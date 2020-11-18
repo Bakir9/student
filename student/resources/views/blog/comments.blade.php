@@ -17,34 +17,46 @@
               <form action="/delete/{{$blog->id}}/selected" method="post">
                 @csrf
                 @method('DELETE')
-                <a href="/comments/{{$blog->id}}/delete" class="btn btn-app" style="margin-top: 10px;">
-                  <i class="fas fa-trash" style="color:black"></i> Delete all
-                </a>
-                <button type="submit" class="btn btn-app" style="margin-top: 10px"><i class="fas fa-trash" style="color:gray"></i>Delete selected</button>
+                @can('delete-comments')
+                  <a href="/comments/{{$blog->id}}/delete" class="btn btn-app" style="margin-top: 10px;">
+                    <i class="fas fa-trash" style="color:black"></i> Delete all
+                  </a>
+                  <button type="submit" class="btn btn-app" style="margin-top: 10px">
+                    <i class="fas fa-trash" style="color:gray"></i>Delete selected
+                  </button>
+                @endcan
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    @can('delete-comments')
+                      <th scope="col">#</th>
+                    @endcan
                     <th scope="col">Username</th>
                     <th scope="col">Comment</th>
                     <th scope="col">Date & Time</th>
-                    <th scope="col">Actions</th>
+                    @can('delete-comments')
+                     <th scope="col">Actions</th>
+                    @endcan
                   </tr>
                 </thead>
                   <tbody>
                     @if(count($comments) > 0)
                       @foreach($comments as $comment)
                         <tr>
-                          <td scope="row"><input type="checkbox" value="{{$comment->id}}" name="comment_id[]"></td>
+                          @can('delete-comments')
+                            <td scope="row"><input type="checkbox" value="{{$comment->id}}" name="comment_id[]"></td>
+                          @endcan
                           <td>{{$comment->username}}</td>
                           <td>{{$comment->content}}</td>
                           <td>
                             {{date('F d, Y', strtotime($comment->created_at))}} at {{date('g:ia', strtotime($comment->created_at))}}
                           </td>
                           <td style="padding-top:0">
-                            <a href="/singleComment/{{$comment->id}}/delete" class="btn btn-block btn-danger btn-sm" style="margin-top: 10px;">
-                              <i class="fas fa-trash" style="color:black"></i> Delete
-                            </a>
+                            @can('delete-comments')
+                              <a href="/singleComment/{{$comment->id}}/delete" class="btn btn-block btn-danger btn-sm" style="margin-top: 10px;">
+                                <i class="fas fa-trash" style="color:black"></i> Delete
+                              </a>
+                            @endcan
                           </td>
                         </tr>
                       @endforeach

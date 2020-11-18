@@ -8,9 +8,11 @@
       <div class="col-lg-12">
         <form action="" method="get">
           @csrf
-          <a href="delete/poll" style="background: rgb(180, 177, 177); color: black" class="btn btn-app">
-            <i class="fas fa-times" style="color:red"></i> Delete Old Poll
-          </a>
+          @can('delete-old-poll')
+            <a href="delete/poll" style="background: rgb(180, 177, 177); color: black" class="btn btn-app">
+              <i class="fas fa-times" style="color:red"></i> Delete Old Poll
+            </a>
+          @endcan
           <!--<button type="submit" class="btn btn-primary">Delete All</button>-->
         </form>
       </div>
@@ -44,20 +46,28 @@
 									@endif
 									<td>{{$poll->user['first_name']}} {{$poll->user['last_name']}}</td>
 									<td>
-                    <a href="/poll/{{ $poll->id }}/edit" class="btn btn-app">
-											<i class="fas fa-edit"></i>Edit
-                    </a>
-                    <a href="/poll/{{ $poll->id }}/delete" class="btn btn-app">
-                      <i class="fas fa-times" style="color:red"></i> Delete
-										</a>
-										@if($poll->isActive == 1)
-											<a href="/poll/{{ $poll->id }}/status" class="btn btn-app" onclick="confirmDelete()">
-												<i class="fas fa-lock" style="color:rgb(133, 48, 48)"></i>Close
-											</a>
-										@endif
-                    <a href="/poll/{{ $poll->id }}/result" class="btn btn-app">
-                      <i class="fas fa-chart-pie" style="color:blue"></i>Result
-                    </a>
+                    @can('edit-poll')
+                      <a href="/poll/{{ $poll->id }}/edit" class="btn btn-app">
+                        <i class="fas fa-edit"></i>Edit
+                      </a>
+                    @endcan
+                    @can('delete-poll')
+                      <a href="/poll/{{ $poll->id }}/delete" class="btn btn-app">
+                        <i class="fas fa-times" style="color:red"></i> Delete
+                      </a>
+                    @endcan
+                    @can('close-poll')
+                      @if($poll->isActive == 1)
+                        <a href="/poll/{{ $poll->id }}/status" class="btn btn-app" onclick="confirmDelete()">
+                          <i class="fas fa-lock" style="color:rgb(133, 48, 48)"></i>Close
+                        </a>
+                      @endif
+                    @endcan
+                    @can('result')
+                      <a href="/poll/{{ $poll->id }}/result" class="btn btn-app">
+                        <i class="fas fa-chart-pie" style="color:blue"></i>Result
+                      </a>
+                    @endcan
                   </td>
 								</tr>
 								@endforeach

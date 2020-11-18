@@ -184,7 +184,10 @@
                           <div class="col-md-4">
                             <p class="text-secondary" style="margin-top: 10px;"> {{$role->description}}</p>
                           </div>
-                          <div class="col-md-4 align-items-right">
+                          <div class="col-md-2">
+                            <p class="text-secondary" style="margin-top: 10px;"> {{$role->type}}</p>
+                          </div>
+                          <div class="col-md-2 align-items-right">
                             <a class="text-body role-margin" href="/user/{{$user->id}}/role/{{$role->id}}"><i class="fas fa-pen" style="color: green"></i></a>
                             <a class="text-body role-margin" href="/user/{{$user->id}}role/{{$role->id}}/delete"><i class="fas fa-trash-alt"  style="color: red"></i></a>
                           </div>
@@ -214,7 +217,7 @@
                       @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
                         @if($user_permission->type == 'User')
                           <div class="col-md-2">
-                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                            <p class="card-title"><i class="fas fa-check  mr-1" style="color: green"></i>{{$user_permission->name}}</p>
                           </div>
                         @endif
                       @endif
@@ -230,7 +233,7 @@
                       @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
                         @if($user_permission->type == 'Blog')
                           <div class="col-md-2">
-                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                            <p class="card-title"><i class="fas fa-check  mr-1" style="color: green"></i>{{$user_permission->name}}</p>
                           </div>
                         @endif
                       @endif
@@ -246,7 +249,7 @@
                       @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
                         @if($user_permission->type == 'Job')
                           <div class="col-md-2">
-                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                            <p class="card-title"><i class="fas fa-check  mr-1" style="color: green"></i>{{$user_permission->name}}</p>
                           </div>
                         @endif
                       @endif
@@ -262,7 +265,7 @@
                       @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
                         @if($user_permission->type == 'Poll')
                           <div class="col-md-2">
-                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                            <p class="card-title"><i class="fas fa-check  mr-1" style="color: green"></i>{{$user_permission->name}}</p>
                           </div>
                         @endif
                       @endif
@@ -278,7 +281,7 @@
                       @if(in_array($user_permission->id, $role->permissions->pluck('id')->toArray()))
                         @if($user_permission->type == 'Dashboard')
                           <div class="col-md-2">
-                            <p class="card-title"><i class="fas fa-check" style="color: green"></i>{{$user_permission->name}}</p>
+                            <p class="card-title"><i class="fas fa-check mr-1" style="color: green"></i>{{$user_permission->name}}</p>
                           </div>
                         @endif
                       @endif

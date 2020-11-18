@@ -44,9 +44,9 @@ Route::get('/tags', function (){
 Route::get('/edit', function () {
     return view('dashboard.user-dashboard.edit_profile');
 });
-    Route::get('/dashboard', function (){
-        return view ('dashboard.admin-home');
-    })->middleware('role:administrator');
+Route::get('/dashboard', function (){
+    return view ('dashboard.admin-home');
+});
 
 /** Users routes */
 Route::get('/newUser', function (){
@@ -198,6 +198,6 @@ Route::get('/permissions', 'PermissionController@index');
 Route::get('/permission/create', 'PermissionController@create');
 Route::get('/delete/{id}/permission', 'PermissionController@delete');
 Route::get('/edit/{id}', 'PermissionController@edit');
-Route::put('/edit/{id}/permission', 'PermissionController@update');
+Route::get('/edit/{id}/permission', 'PermissionController@update');
 /**Permissions for Role */
 Route::get('/permissions/role/{role_id}', 'RoleController@savePermissionsForRole');

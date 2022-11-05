@@ -1,4 +1,4 @@
-# student
+# Student Service
 Student Service is project for general purpose of studing, living and student jobs. Student can find on there
 pages jobes, apartmens, college courses. Also there is a section where each student can write blog about
 their experience in that city. Each student can also create poll, where he can ask another students for their
